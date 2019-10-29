@@ -29,7 +29,7 @@ public class EcarAdInstlManager implements   View.OnClickListener{
     CustomDialog mCustomDialog;
     EcarAdViewListener monEcarListener;
     Context mcontext;
-    String    fpath;
+    String  imgname;
     private    final String DownLoad_Apk_Name = "AdInstl.apk";
     BaseData baseData;
     public static final  int  UPDATE_imageView = 0xffff003;
@@ -41,8 +41,8 @@ public class EcarAdInstlManager implements   View.OnClickListener{
 
                 case UPDATE_imageView:
                     if (mCustomDialog != null) {
-                        if(fpath!=null){
-                            mCustomDialog.setImageViewBackground(Drawable.createFromPath(fpath));
+                        if(imgname!=null){
+                            mCustomDialog.setImageViewBackground(Drawable.createFromPath(Environment.getExternalStorageDirectory().toString()+File.separator+Constant.adEarFile+File.separator+imgname));
                         }
                     }
                     break;
@@ -74,7 +74,7 @@ public class EcarAdInstlManager implements   View.OnClickListener{
         mCustomDialog.setCanceledOnTouchOutside(false);
         mCustomDialog.setCancelable(false);
         //判断广告是否存在   不存在就跳过开屏
-        File adfile = new File(fpath);
+        File adfile = new File(Environment.getExternalStorageDirectory().toString()+File.separator+Constant.adEarFile+File.separator+imgname);
         if(adfile.exists()) {
             mCustomDialog.setImageViewBackground(Drawable.createFromPath(adfile.toString()));
         }
@@ -101,7 +101,7 @@ public class EcarAdInstlManager implements   View.OnClickListener{
                             baseData.setData(new Gson().fromJson(adIdobj.toString(),ResponseData.class)) ;
                             String  img = (String) adIdobj.get("img");
                             String  size = (String) adIdobj.get("size");
-                            String  imgname = img.replace("/","").replace("\\","") ;
+                            imgname = img.replace("/","").replace("\\","") ;
                             //去掉jpeg  png
                             imgname = imgname.substring(0,imgname.length()-5);
                             SharedPreferences.Editor editor = preferences.edit();
@@ -111,7 +111,7 @@ public class EcarAdInstlManager implements   View.OnClickListener{
                             //图片不存在就去下载。
                             if(!adfile.exists()) {
                                 if (img != null && !img.equals("")) {
-                                    fpath= HTTPUtils.DownIMG(BuildConfig.Url_DOWN + img, imgname);
+                                      HTTPUtils.DownIMG(BuildConfig.Url_DOWN + img, imgname);
                                 }
                             }
                             editor.commit();

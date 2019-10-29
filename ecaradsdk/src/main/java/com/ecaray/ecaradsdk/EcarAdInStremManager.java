@@ -44,7 +44,7 @@ public class EcarAdInStremManager {
     ImageView  imageView;
     BaseData baseData;
     double widthsizeX;
-    String    fpath;
+    String    imgname;
 
     double hightsizeX;
     LinearLayout linearLayout;
@@ -61,7 +61,7 @@ public class EcarAdInStremManager {
                 case UPDATE_imageView:
                     //data2.putString("fname", fpath);
                     textView.setText(baseData.getData().getTitle());
-                    File adfile = new File(fpath);
+                    File adfile = new File(Environment.getExternalStorageDirectory().toString()+File.separator+Constant.adEarFile+File.separator+imgname);
                     int  textViewMaxWidth = (int)widthsizeX/3;
                     if(adfile.exists()){
                        Bitmap bitmap= BitmapFactory.decodeFile(adfile.toString());
@@ -162,6 +162,7 @@ public class EcarAdInStremManager {
         }
 
         LinearLayout.LayoutParams lp3 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        linearLayout.setGravity(Gravity.CENTER_VERTICAL);
         view.addView(linearLayout,lp3);
 
     }
@@ -210,7 +211,7 @@ public class EcarAdInStremManager {
                             JSONObject adIdobj =  (JSONObject) data.get(adId);
                             if(adIdobj!=null){
                                 baseData.setData(new Gson().fromJson(adIdobj.toString(),ResponseData.class)) ;
-                                String  imgname = baseData.getData().getImg().replace("/","").replace("\\","") ;
+                                imgname = baseData.getData().getImg().replace("/","").replace("\\","") ;
                                 //去掉jpeg  png
                                 imgname = imgname.substring(0,imgname.length()-5);
                                 editor.putString(Constant.instrem_image_size,baseData.getData().getSize());
@@ -218,7 +219,7 @@ public class EcarAdInStremManager {
                                 //图片不存在就去下载。
                                 if(!adfile.exists()) {
                                     if (baseData.getData().getImg() != null && !baseData.getData().getImg().equals("")) {
-                                        fpath=HTTPUtils.DownIMG(BuildConfig.Url_DOWN + baseData.getData().getImg(), imgname);
+                                        HTTPUtils.DownIMG(BuildConfig.Url_DOWN + baseData.getData().getImg(), imgname);
                                     }
                                 }
                                 editor.putString(Constant.instrem_img, imgname);
