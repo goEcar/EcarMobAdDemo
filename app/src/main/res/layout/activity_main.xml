@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.ecaray.ecarmobaddemo.MainActivity">
+    <Button
+        android:layout_marginTop="50dp"
+        android:id="@+id/adBannerBt2"
+        android:text="Banner广告接入"
+        android:layout_gravity="center_horizontal"
+        android:onClick="onButtonClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <Button
+
+        android:id="@+id/adBannerBt"
+        android:text="自己组织Banner控件,返回image接入"
+        android:layout_gravity="center_horizontal"
+        android:onClick="onButtonClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/adInterstitialBt"
+        android:text="插屏广告接入"
+        android:layout_gravity="center_horizontal"
+        android:onClick="onButtonClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/adSplashBt"
+        android:text="闪屏广告接入"
+        android:layout_gravity="center_horizontal"
+        android:onClick="onButtonClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/adNativeBt"
+        android:text="信息流广告接入"
+        android:layout_gravity="center_horizontal"
+        android:onClick="onButtonClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/adTextNativeBt"
+        android:text=" 文字广告接入"
+        android:layout_gravity="center_horizontal"
+        android:onClick="onButtonClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

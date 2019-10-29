@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 充值背景-->
+    <color name="common_wallet_company_background">#FFD8D8</color>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!-- btn bg color -->
+    <color name="btn_state_enabled_false">#C4F0F7</color>
+    <color name="btn_state_enabled_true">#3CC6E0</color>
+    <color name="btn_state_pressed_true">#1C90A5</color>
+
+    <color name="background_deep_blue">#1C90A5</color>
+
+    <!-- grey btn bg color -->
+    <color name="btn_grey_state_enabled_false">#b1b1b1</color>
+    <color name="btn_grey_state_enabled_true">#919191</color>
+    <color name="btn_grey_state_pressed_true">#4e4e4e</color>
+
+
+    <color name="grey_click">#d8d8d8</color>
+
+<!--纯色-->
+    <!--白色-->
+    <color name="white">#ffffff</color>
+    <color name="background">#f1f1f1</color>
+    <color name="background2">#f2f2f2</color>
+    <!--亮白色-->
+    <color name="light_white">#c8ffff</color>d
+    <color name="gery">#919191</color>
+    <!--深灰色-->
+    <color name="deep_gray">#ffa8abad</color>
+    <!--黑色-->
+    <color name="black">#000000</color>
+    <!--透明的-->
+    <color name="transparent">#00000000</color>
+    <!--半透明的-->
+    <color name="translucence">#e444</color>
+    <!--橙色-->
+    <color name="orange">#F76809</color>
+    <!--红色-->
+    <color name="red">#E20C0C</color>
+    <color name="berth_list_bg">#E7E7E7</color>
+
+    <!--淡红色-->
+    <color name="pink">#ff5123</color>
+
+    <!--蓝色-->
+    <color name="blue">#3DC7E1</color>
+
+    <color name="gray">#D5D5D5</color>
+
+    <!--加载圈-->
+    <!--加载圈颜色-->
+    <color name="loading_gray">#ADADAD</color>
+    <!--加载字体-->
+    <color name="loading_text_gray">#EDEDED</color>
+    <!--加载滚轮-->
+    <color name="loading_wheel">#F4F4F4</color>
+
+    <!--主题颜色-->
+    <color name="main_theme">#3CC6E0</color>
+    <!--主页背景颜色-->
+    <color name="home_page_background">#3A4547</color>
+    <!--停车缴费背景-->
+    <color name="home_page_park_pay_bg">#00CBC1</color>
+    <color name="home_page_park_pay_bg_press">#1F7671</color>
+    <!--下班签出背景-->
+    <color name="home_page_check_out_bg">#37A2F2</color>
+    <color name="home_page_check_out_bg_press">#3474A2</color>
+    <!--当日收费背景-->
+    <color name="home_page_day_charge_bg">#F5B726</color>
+    <color name="home_page_day_charge_bg_press">#9B761F</color>
+    <!--扎帐管理背景-->
+    <color name="home_page_tie_manager_bg">#00CBC0</color>
+    <color name="home_page_tie_manager_bg_press">#0BB7AF</color>
+    <!--更改密码背景-->
+    <color name="home_page_change_pw_bg">#FB5A69</color>
+    <color name="home_page_change_pw_bg_press">#83272E</color>
+
+    <!--超时登记背景-->
+    <color name="home_overtime_register_bg">#29da95</color>
+    <color name="home_overtime_register_bg_press">#1229da95</color>
+
+    <!--违法停车背景-->
+    <color name="home_illegal_park_bg">#11c8ef</color>
+    <color name="home_illegal_park_bg_press">#1211c8ef</color>
+
+    <!--泊位停车-->
+    <!--亮灰色-->
+    <color name="bright_gray">#EcEcEc</color>
+    <!--字体颜色-->
+    <color name="default_text_gray">#8F8F8F</color>
+
+    <color name="text_black">#4e4e4e</color>
+    <color name="text_black_3">#313a42</color>
+    <color name="text_deep_gray">#585858</color>
+    <color name="text_deep_gray_2">#747474</color>
+    <color name="text_deep_gray_3">#787c7c</color>
+    <color name="text_light_gray">#969696</color>
+    <color name="text_light_gray_2">#b1b1b1</color>
+    <color name="text_light_gray_3">#313a42</color>
+
+    <!--分割线颜色-->
+    <color name="line_color">#d8d8d8</color>
+
+    <!--键盘背景颜色-->
+    <color name="keyboard_bg">#E1E4E9</color>
+
+    <color name="tip_color">#969696</color>
+    <!--泊位列表不同泊位的背景色-->
+    <color name="berth_green_bg">#00E079</color>
+    <color name="berth_orange_bg">#FE9402</color>
+    <color name="berth_yellow_bg">#FFEB3C</color>
+    <color name="berth_red_bg">#FF4D4D</color>
+    <color name="darkorchid">#9932cc</color> <!-- 暗紫色 -->
+    <color name="royalblue">#4169e1</color> <!-- 皇家蓝 -->
+    <color name="berth_input_car_bg">#3ac6df</color> <!-- 皇家蓝 -->
+
+    <color name="deep_blue">#3D82E1</color>
+
+    <!--Zxing相关-->
+    <color name="contents_text">#ff000000</color>
+    <color name="encode_view">#ffffffff</color>
+    <color name="possible_result_points">#c0ffbd21</color> <!-- Android standard ICS color -->
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_points">#c099cc00</color> <!-- Android standard ICS color -->
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="status_text">#ffffffff</color>
+
+    <color name="viewfinder_laser">#ffcc0000</color> <!-- Android standard ICS color -->
+    <color name="viewfinder_mask">#60000000</color>
+</resources>

@@ -1,0 +1,46 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 23
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "Url_Common", '"https://sys.ljgcparking.com"'
+            buildConfigField "String", "Url_DOWN", '"http://192.168.9.86/stif_fs/image?module=sys&service=File&method=view&file_name="'
+
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "Url_Common", '"http://192.168.9.86:8006/api/data?"'
+            buildConfigField "String", "Url_DOWN", '"http://192.168.9.86/stif_fs/image?module=sys&service=File&method=view&file_name="'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    compile 'com.google.code.gson:gson:2.6'
+    compile 'com.youth.banner:banner:1.4.10'  //最新版本
+    compile "com.github.bumptech.glide:glide:3.7.0"
+    compile 'com.facebook.fresco:fresco:0.12.0'
+
+
+}
