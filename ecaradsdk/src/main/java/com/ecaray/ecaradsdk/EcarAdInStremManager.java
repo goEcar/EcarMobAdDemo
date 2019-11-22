@@ -40,16 +40,17 @@ import static android.widget.LinearLayout.VERTICAL;
 public class EcarAdInStremManager {
     private    final String DownLoad_Apk_Name = "AdInStrem.apk";
     Context  mcontext;
-    TextView  textView;
+    TextView  textViewsummary;
+    TextView  textViewtitle;
     ImageView  imageView;
     BaseData baseData;
     double widthsizeX;
     String    imgname;
-
+    SharedPreferences preferences;
     double hightsizeX;
     LinearLayout linearLayout;
     LinearLayout.LayoutParams lp1;
-    LinearLayout.LayoutParams lp2;
+    LinearLayout.LayoutParams imageview_LayoutParams;
     EcarAdViewListener mecarAdViewListener;
     public static final  int  UPDATE_imageView = 0xffff003;
     private Handler handler = new Handler(){
@@ -60,7 +61,9 @@ public class EcarAdInStremManager {
 
                 case UPDATE_imageView:
                     //data2.putString("fname", fpath);
-                    textView.setText(baseData.getData().getTitle());
+
+                    textViewtitle.setText(baseData.getData().getTitle());
+                    textViewsummary.setText(baseData.getData().getSummary());
                     File adfile = new File(Environment.getExternalStorageDirectory().toString()+File.separator+Constant.adEarFile+File.separator+imgname);
                     int  textViewMaxWidth = (int)widthsizeX/3;
                     if(adfile.exists()){
@@ -69,31 +72,71 @@ public class EcarAdInStremManager {
                         if(textViewMaxWidth <= 0 ){
                             textViewMaxWidth = (int)widthsizeX/5;
                         }
-                       imageView.setImageBitmap(bitmap);
+                        imageView.setImageBitmap(bitmap);
                     }
                     linearLayout.removeAllViews();
                     String layout =baseData.getData().getLayout();
                     if(layout.contains("左图")){
-                        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
-                        LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-                        linearLayout.addView(imageView, lp2);
-                        linearLayout.addView(textView, lp1);
+                        lp1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+                        imageview_LayoutParams = new LinearLayout.LayoutParams(300,300);
+                        LinearLayout linearLayout4 = new LinearLayout(mcontext);
+                        linearLayout4.setOrientation(LinearLayout.HORIZONTAL);
+
+                        LinearLayout linearLayout3 = new LinearLayout(mcontext);
+                        linearLayout3.setOrientation(LinearLayout.VERTICAL);
+                        linearLayout3.addView(textViewtitle, lp1);
+                        linearLayout3.addView(textViewsummary, lp1);
+
+                        linearLayout4.setOrientation(LinearLayout.HORIZONTAL);
+                        linearLayout4.addView(imageView, imageview_LayoutParams);
+                        LinearLayout.LayoutParams  linearLayout3lp1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+                        linearLayout3lp1.leftMargin=30;
+                        linearLayout4.addView(linearLayout3, linearLayout3lp1);
+
+
+                        TextView   gdtext = new TextView(mcontext);
+                        gdtext.setText("  广告         "+baseData.getData().getName());
+                        gdtext.setFocusable(true);
+
+                        linearLayout.setOrientation(LinearLayout.VERTICAL);
+                        linearLayout.addView(linearLayout4, lp1);
+                        linearLayout.addView(gdtext, lp1);
 
                     }else if(layout.contains("左文")){
-                        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
-                        LinearLayout.LayoutParams   lp1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-                        textView.setMaxWidth(textViewMaxWidth);
-                        LinearLayout.LayoutParams  lp2 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-                        linearLayout.addView(textView, lp1);
-                        linearLayout.addView(imageView, lp2);
-                    }else if(layout.contains("上图")){
+                        lp1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+                        imageview_LayoutParams = new LinearLayout.LayoutParams(300,300);
+                        LinearLayout linearLayout4 = new LinearLayout(mcontext);
+                        linearLayout4.setOrientation(LinearLayout.HORIZONTAL);
+
+                        LinearLayout linearLayout3 = new LinearLayout(mcontext);
+                        linearLayout3.setOrientation(LinearLayout.VERTICAL);
+                        linearLayout3.addView(textViewtitle, lp1);
+                        linearLayout3.addView(textViewsummary, lp1);
+
+                        linearLayout4.setOrientation(LinearLayout.HORIZONTAL);
+                        linearLayout4.addView(linearLayout3, lp1);
+
+                        imageview_LayoutParams.leftMargin=30;
+                        linearLayout4.addView(imageView, imageview_LayoutParams);
+
+                        TextView   gdtext = new TextView(mcontext);
+                        gdtext.setText("  广告         "+baseData.getData().getName());
+                        gdtext.setFocusable(true);
+
                         linearLayout.setOrientation(LinearLayout.VERTICAL);
-                        linearLayout.addView(imageView, lp2);
-                        linearLayout.addView(textView, lp1);
+                        linearLayout.addView(linearLayout4, lp1);
+                        linearLayout.addView(gdtext, lp1);
+
                     }else {
+
                         linearLayout.setOrientation(LinearLayout.VERTICAL);
-                        linearLayout.addView(textView, lp1);
-                        linearLayout.addView(imageView, lp2);
+                        linearLayout.addView(textViewtitle, lp1);
+                        linearLayout.addView(imageView, imageview_LayoutParams);
+                        linearLayout.addView(textViewsummary, lp1);
+                        TextView   gdtext = new TextView(mcontext);
+                        gdtext.setText("  广告         "+baseData.getData().getName());
+                        gdtext.setFocusable(true);
+                        linearLayout.addView(gdtext, lp1);
                     }
                     break;
             }
@@ -102,11 +145,12 @@ public class EcarAdInStremManager {
 
 
 
-    public void   setTextSize(float textSize){
-        if(textView!=null)
-            textView.setTextSize(textSize);
+    public void   setTextTitleSize(float textSize){
+        if(textViewtitle!=null) {
+            textViewtitle.setTextSize(textSize);
+        }
     }
-    public EcarAdInStremManager(Context context, ViewGroup view, String adId) {
+    public EcarAdInStremManager(Context context, ViewGroup viewGroup, String adId) {
         mcontext = context;
         File file = new File(Environment.getExternalStorageDirectory(),Constant.adEarFile);
         if(!file.exists())
@@ -116,7 +160,7 @@ public class EcarAdInStremManager {
         wm.getDefaultDisplay().getMetrics(dm);
         widthsizeX = dm.widthPixels;
         hightsizeX = dm.heightPixels;
-        SharedPreferences preferences = mcontext.getSharedPreferences(Constant.adEarInfo,mcontext.MODE_PRIVATE);
+        preferences = mcontext.getSharedPreferences(Constant.adEarInfo,mcontext.MODE_PRIVATE);
         parseJSON(preferences,adId);
 
         linearLayout = new LinearLayout(context);
@@ -129,16 +173,25 @@ public class EcarAdInStremManager {
             }
         });
 
-        textView = new TextView(mcontext);
-        lp1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-        textView.setTextColor(Color.BLACK);
-        textView.setMarqueeRepeatLimit(Integer.MAX_VALUE);
-        textView.setFocusable(true);
-        textView.setEllipsize(TextUtils.TruncateAt.MARQUEE);
-        textView.setSingleLine();
-        textView.setFocusableInTouchMode(true);
-        textView.setHorizontallyScrolling(true);
+        textViewtitle = new TextView(mcontext);
+        lp1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        textViewtitle.setTextColor(Color.BLACK);
+//        textViewtitle.setMarqueeRepeatLimit(Integer.MAX_VALUE);
+        textViewtitle.setFocusable(true);
+//        textViewtitle.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+//        textViewtitle.setSingleLine();
+//        textViewtitle.setFocusableInTouchMode(true);
+//        textViewtitle.setHorizontallyScrolling(true);
 
+
+        textViewsummary = new TextView(mcontext);
+        textViewsummary.setTextColor(Color.BLACK);
+//        textViewsummary.setMarqueeRepeatLimit(Integer.MAX_VALUE);
+        textViewsummary.setFocusable(true);
+//        textViewsummary.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+//        textViewsummary.setSingleLine();
+//        textViewsummary.setFocusableInTouchMode(true);
+//        textViewsummary.setHorizontallyScrolling(true);
 
         imageView = new ImageView(mcontext);
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
@@ -148,7 +201,7 @@ public class EcarAdInStremManager {
         }
         String[]  arr=viewSize.split("\\*");
         double  sp=Integer.parseInt(arr[1].trim())*widthsizeX/Double.parseDouble(arr[0].trim());
-        lp2 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,(int)sp);
+        imageview_LayoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,300);
         String  imgname= preferences.getString(Constant.instrem_img, "ecar");
         int textViewMaxWidth = (int)widthsizeX/3;
         File adfile = new File(Environment.getExternalStorageDirectory().toString()+File.separator+Constant.adEarFile+File.separator+imgname);
@@ -162,8 +215,8 @@ public class EcarAdInStremManager {
         }
 
         LinearLayout.LayoutParams lp3 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        linearLayout.setGravity(Gravity.CENTER_VERTICAL);
-        view.addView(linearLayout,lp3);
+//        linearLayout.setGravity(Gravity.CENTER_HORIZONTAL);
+        viewGroup.addView(linearLayout,lp3);
 
     }
 

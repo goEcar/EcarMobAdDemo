@@ -116,7 +116,6 @@ public class EcarAdInstlManager implements   View.OnClickListener{
                             }
                             editor.commit();
                         }
-
                         if(handler!=null) {
                             handler.sendEmptyMessage(UPDATE_imageView);
                         }

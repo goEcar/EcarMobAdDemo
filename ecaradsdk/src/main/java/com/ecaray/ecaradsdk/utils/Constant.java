@@ -19,7 +19,7 @@ public class Constant {
     public final static String    position_code_key="position_code";
 
 
-    //点击动作：0-无操作，1-打开链接，2-打开自有页面， 3-打开小程序，4-打开第三方App,5-打开第三方App
+    //点击动作：0-无操作，1-打开链接，2-打开自有页面， 3-打开小程序，4-打开第三方App,5-下载第三方App
     public final static  String click_action_0="0";
     public final static  String click_action_1="1";
     public final static  String click_action_2="2";
